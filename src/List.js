@@ -78,7 +78,9 @@ export default class List extends Component {
     }
 
     handleChange = e => {
-        this.setState({ pokemon: e.target.value });
+        const casingFix = (e.target.value).toString();
+        
+        this.setState({ pokemon: casingFix.toLowerCase() });
     }
 
     handleType = e => {
