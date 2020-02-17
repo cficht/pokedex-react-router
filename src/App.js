@@ -23,7 +23,7 @@ export default class App extends Component {
             <img src="pokedexlogo.png" alt=""></img>
           </div>
           <div id="nav-div">
-            <Link to="/" onClick={this.handleHome}>List Pokemon</Link>
+            <Link to="/" onClick={this.handleHome}>Search</Link>
             <Link to="/about-me/about">About</Link>
           </div>
 
