@@ -26,6 +26,10 @@ export default class List extends Component {
             this.setState({ searchType: 'pokemon' })
         }
 
+        const nameCheck = document.getElementById('name-check');
+        nameCheck.checked = true;
+        this.setState({ searchType: nameCheck.value })
+
         const paramSplit = this.props.match.params.pokemon.split('_');
         const searchType = paramSplit[0];
         const searchDetail = paramSplit[1];
@@ -36,16 +40,13 @@ export default class List extends Component {
             this.setState({ searchType: searchType })
             this.setState({ pokemon: searchDetail })
             this.setState({ page: searchPage })
+            console.log(searchType);
         }
 
         const pokeOnline = await getPokemon(searchDetail, searchType, searchPage);
         this.setState({ pokeDex: pokeOnline.body.results });
         this.setState({ totalPokemon: pokeOnline.body.count });
         this.setState({ maxPage: Math.ceil(this.state.totalPokemon / this.state.perPage) })
-
-        const nameCheck = document.getElementById('name-check');
-        nameCheck.checked = true;
-        this.setState({ searchType: nameCheck.value })
     }
 
 
