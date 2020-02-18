@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 export default class Paging extends Component {
+    
     render() {
         if (this.props.totalPokemon === 0) {
             return <h5 className="paging">No results! :(</h5>;

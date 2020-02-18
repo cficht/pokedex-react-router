@@ -40,13 +40,7 @@ export default class List extends Component {
         this.setState({ pokeDex: pokeOnline.body.results });
         this.setState({ totalPokemon: pokeOnline.body.count });
         this.setState({ maxPage: Math.ceil(this.state.totalPokemon / this.state.perPage) })
-
-        // const nameCheck = document.getElementById('name-check'); //NECESSARY?
-        // nameCheck.checked = true;
-        // this.setState({ searchType: nameCheck.value })
     }
-
-
 
     handlePageChange = async (incre) => {
         const currentPage = Number(this.state.page);
