@@ -4,6 +4,7 @@ import PokeItem from './PokeItem.js';
 import Searching from './Searching.js';
 import Paging from './Paging.js';
 import { getPokemon } from './api.js';
+import shortid from 'shortid';
 
 export default class List extends Component {
 
@@ -57,10 +58,11 @@ export default class List extends Component {
     handleSearchClick = async e => {
         e.preventDefault();
         
-        this.setState({ page: 1 });
-        const newParam = `${this.state.searchType}_${this.state.pokemon}_${this.state.page}`;
+        const newSearchPage = 1;
+        this.setState({ page: newSearchPage });
+        const newParam = `${this.state.searchType}_${this.state.pokemon}_${newSearchPage}`;
 
-        const newPokemonOnline = await getPokemon(this.state.pokemon, this.state.searchType, this.state.page);
+        const newPokemonOnline = await getPokemon(this.state.pokemon, this.state.searchType, newSearchPage);
         this.setState({ pokeDex: newPokemonOnline.body.results });
         this.setState({ totalPokemon: newPokemonOnline.body.count });
         this.setState({ maxPage: Math.ceil(this.state.totalPokemon / this.state.perPage) })
@@ -78,7 +80,7 @@ export default class List extends Component {
     }
 
     render() {
-        const pokeNode = this.state.pokeDex.map(pokemon => <Link to={`detail/${pokemon._id}`}> <PokeItem pokemon={pokemon} /> </Link>)
+        const pokeNode = this.state.pokeDex.map(pokemon => <Link to={`detail/${pokemon._id}`} key={shortid.generate()}> <PokeItem pokemon={pokemon}/> </Link>)
 
         return (
             <div>
